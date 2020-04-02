@@ -1,8 +1,8 @@
 import React, { useState} from 'react'; // importar o estado para as variaveis
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom'; // useHistory para enviar o usuari de volta
 import { FiArrowLeft } from 'react-icons/fi';
 
-import api from '../../services/api'
+import api from '../../services/api';
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
@@ -14,6 +14,7 @@ export default function Register() {// stados para cada campo do formulario
   const [city, setCity] = useState('');
   const [uf, setUf] = useState('');
 
+  const history = useHistory();
 
   async function handleRegister(e) {  //funcao para o cadastro do usuario disparada quando o form de um submit
     e.preventDefault();  // previne um evento padrao no carregamento da pagina
@@ -23,17 +24,18 @@ export default function Register() {// stados para cada campo do formulario
       email,
       whatsapp,
       city,
-      uf
+      uf,
     };
 
-    try { 
-    const response = await api.post('ongs, data')// envia os dados e recebe a resposta o envio e sempre que usa o await usa se o async antes da funçao
+        const response = await api.post('ongs', data);// envia os dados e recebe a resposta o envio 'e' sempre que se usar o await usa-se o async antes da funçao
+             // o await é para aguardar a resposta
+        alert(`Seu ID de acesso: ${response.data.id}`);
 
-    alert(`Seu ID de acesso: ${response.data.id}`)
-    } catch (err) {
-      alert('Erro no cadastro, tente novamente.');
-    }
-    
+        history.push('/');  // envia de volta para o logon
+
+
+      //alert('Erro no cadastro, tente novamente.');
+       
   }
 
   return (
@@ -53,7 +55,7 @@ export default function Register() {// stados para cada campo do formulario
         <form onSubmit={handleRegister}> 
           <input 
             placeholder="Nome da ONG"
-            value={name}
+            value={name} // valor do input
             onChange={e => setName(e.target.value)}// ouve o valor e armazena no estado name
           />
           <input type="email" 

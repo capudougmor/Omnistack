@@ -8,10 +8,10 @@ module.exports = {
         return response.json(ongs);                                                                     
     },
 
-    async create(request, response) {
+    async create(request, response) { // metodo para criacao das ongs
     const { name, email, whatsapp, city, uf } = request.body;
 
-    const id = crypto.randomBytes(4).toString('HEX'); 
+    const id = crypto.randomBytes(4).toString('HEX'); // cria o id da ong
 
     await connection('ongs').insert({
         id,

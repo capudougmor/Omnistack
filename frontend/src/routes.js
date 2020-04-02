@@ -10,12 +10,12 @@ export default function Routes() {// rotas tambem sao componentes por isso sao e
     return (
         <BrowserRouter>
             <Switch>    
-                <Route path="/" exact component={Logon} /> // o exact é para que o caminho seja exatamento este
+                <Route path="/" exact component={Logon} /> 
                 <Route path="/register" component={Register} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/incident/new" component={NewIncident} />
 
             </Switch>        
         </BrowserRouter>
-    )
+    )// o exact é para que o caminho seja exatamento este
 }
