@@ -1,4 +1,4 @@
-import React, { useState} from 'react'; // importar o estado para as variaveis
+import React, { useState } from 'react'; // importar o estado para as variaveis
 import { Link, useHistory } from 'react-router-dom'; // useHistory para enviar o usuari de volta
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -27,15 +27,15 @@ export default function Register() {// stados para cada campo do formulario
       uf,
     };
 
-        const response = await api.post('ongs', data);// envia os dados e recebe a resposta o envio 'e' sempre que se usar o await usa-se o async antes da funçao
-             // o await é para aguardar a resposta
-        alert(`Seu ID de acesso: ${response.data.id}`);
+    try {
+      const response = await api.post('ongs', data);// envia os dados e recebe a resposta o envio 'e' sempre que se usar o await usa-se o async antes da funçao
+      // o await é para aguardar a resposta
+      alert(`Seu ID de acesso: ${response.data.id}`);
 
-        history.push('/');  // envia de volta para o logon
-
-
-      //alert('Erro no cadastro, tente novamente.');
-       
+      history.push('/');  // envia de volta para o logon
+    } catch (err) {
+      alert('Erro no cadastro, tente novamente.');
+    }     
   }
 
   return (

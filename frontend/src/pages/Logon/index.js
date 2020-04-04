@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { Link } from 'react-router-dom'; // usado para o SPA
+import React, { useState } from 'react';
+import { Link , useHistory} from 'react-router-dom'; // useHistory para mudar as rotas
 import { FiLogIn } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -10,19 +10,22 @@ import heroesImg from '../../assets/heroes.png';
 
 export default function Logon() {
     const [id, setId] = useState('');
+    const history = useHistory(); // variavel com o history
 
     async function handleLogin(e) { // validar se a ong existe
       e.preventDefault();  // usado em todos os formularios para evitar o redirect
       
       try {
-        const response = await api.post('sessions', { id });
+        const response = await api.post('sessions', { id }); // para que os datos fiquem todos disponiveis na app salva se no storage
 
-        alert(`Seu ID de acesso: ${response.data.id}`);
+        localStorage.setItem('ongId', id);
+        localStorage.setItem('ongName', response.data.name);
+
+        history.push('/profile'); // se tudo der certo é enviado para o profile
       } catch (err) {
         alert('Falha no login, tente novamente.');
       }
-
-    }
+    };
 
     return (
       <div className="logon-container">
