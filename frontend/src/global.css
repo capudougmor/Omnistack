@@ -49,6 +49,7 @@ form textarea {
     height: 60px;
     background: #e02041;
     border-radius: 8px;
+    border: none;
     color: #fff;
     font-weight: 700;
     margin-top: 16px;
