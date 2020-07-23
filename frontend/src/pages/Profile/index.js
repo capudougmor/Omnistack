@@ -23,7 +23,7 @@ export default function Profile() {
     }).then(response => {
       setIncidents(response.data);
     })
-  }, [ongId]); // dentro dos couchetes coloca se o item que dispara a função
+  }, [ongId]); // dentro dos couchetes coloca o item que dispara a função
 
   async function handleDeleteIncident( id ) { // funcao para deletar o caso
     try {
